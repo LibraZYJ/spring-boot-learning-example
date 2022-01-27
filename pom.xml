@@ -20,6 +20,7 @@
         <module>springboot-webflux-1-quickstart</module>
         <module>springboot-webflux-2-restful</module>
         <module>springboot-webflux-3-mongodb</module>
+        <module>springboot-poi</module>
     </modules>
 
     <dependencies>

@@ -1,0 +1,28 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: spring-boot-rabbit
+  cloud:
+    stream:
+      binders: # Binding MQ service information (here we are RabbitMQ)
+        dabingRabbitBinder: # the name defined for the Binder, used later for the association
+          type: rabbit # MQ type, if it's Kafka, configure kafka here
+          environment: # MQ environment configuration (username, password, etc.)
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672
+                username: guest
+                password: guest
+      bindings: # Associated integration channels and binder objects
+        output: # output is the name of the channel we defined, we can't change it here
+          destination: dabingExchange # the name of the exchange to be used (message queue subject name)
+          content-type: text/plain # application/json # Message type setting, e.g. json
+          binder: dabingRabbitBinder # Associated MQ service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5627
+    username: guest
+    password: guest
+    virtual-host: /
